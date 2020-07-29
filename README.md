@@ -1,2 +1,2 @@
-# BaumanNegotationClub-Site
+# BaumanNegotationClubSite
 Сайт Бауманского Клуба Переговоров 
