@@ -3,8 +3,5 @@ from main.models import *
 
 
 # Register your models here.
-class AdminModel(admin.ModelAdmin):
-    pass
 
-
-admin.register(ExtendedUser, AdminModel)
+admin.site.register(ExtendedUser)
