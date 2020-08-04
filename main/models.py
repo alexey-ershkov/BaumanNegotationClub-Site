@@ -11,7 +11,7 @@ class ExtendedUser(models.Model):
     socialLink = models.URLField(max_length=256)
 
     def __str__(self):
-        return '{}'.format(self.user.name)
+        return '{}'.format(self.user)
 
     class Meta:
         verbose_name = 'участника клуба'
@@ -30,3 +30,28 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'пост'
         verbose_name_plural = 'посты'
+
+
+class Game(models.Model):
+    title = models.CharField(max_length=128, verbose_name='Название игры')
+    date = models.DateTimeField(verbose_name='Дата и время игры', null=True)
+
+    def __str__(self):
+        return '{}'.format(self.title, self.date)
+
+    class Meta:
+        verbose_name = 'игра'
+        verbose_name_plural = 'игры'
+
+
+class GameRequest(models.Model):
+    game = models.ForeignKey('Game', on_delete=models.DO_NOTHING, verbose_name='Игра', null=True)
+    extUser = models.OneToOneField('ExtendedUser', on_delete=models.CASCADE, verbose_name='Участник')
+    gameTimeWanted = models.TimeField(verbose_name='Предпочитаемое время', null=True)
+
+    def __str__(self):
+        return '{}'.format(self.extUser.user, self.game.title)
+
+    class Meta:
+        verbose_name = 'запрос на игру'
+        verbose_name_plural = 'запросы на игру'
