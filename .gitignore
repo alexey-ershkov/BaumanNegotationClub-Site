@@ -131,4 +131,3 @@ dmypy.json
 .idea/
 
 db.sqlite3
-main/migrations
