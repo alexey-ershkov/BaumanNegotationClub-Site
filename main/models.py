@@ -33,7 +33,9 @@ class Post(models.Model):
 
 
 class Game(models.Model):
+    types = (('K', 'Классика'), ('C', 'Ситуационная'))
     title = models.CharField(max_length=128, verbose_name='Название игры')
+    gameType = models.CharField(choices=types, verbose_name='Тип игры', max_length=1, default='K')
     date = models.DateTimeField(verbose_name='Дата и время игры', null=True)
 
     def __str__(self):
