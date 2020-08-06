@@ -3,7 +3,9 @@
     Главная
 {% endblock %}
 {% block content %}
+    <div class="row">
     {% for post in posts %}
         {% include "inc/postCard.html" %}
     {% endfor %}
+    </div>
 {% endblock %}

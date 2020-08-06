@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title>{% block titile %}{% endblock %}</title>
     {% load static %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{% static "css/materialize.min.css" %}">
 </head>
 <body>
+{% include "inc/navbar.html" %}
 {% block content %} {% endblock %}
 <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
 </body>

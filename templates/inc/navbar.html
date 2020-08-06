@@ -1,0 +1,15 @@
+<nav>
+    <div class="nav-wrapper">
+        <a href="#!" class="brand-logo" style="margin-left: 1rem">БКП</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            {% include "inc/navUrls.html" %}
+        </ul>
+    </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+    {% include "inc/navUrls.html" %}
+</ul>
+{% load static %}
+<script type="text/javascript" src="{% static "js/navbar.js" %}"></script>
