@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static "css/materialize.min.css" %}">
-</head>
-<body>
-{% for post in posts %}
-    <h1>{{ post.title }}</h1>
-    <h2>{{ post.postText }}</h2>
-{% endfor %}
-<script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
-</body>
-</html>
+{% extends "base.html" %}
+{% block titile %}
+    Главная
+{% endblock %}
+{% block content %}
+    {% for post in posts %}
+        {% include "inc/postCard.html" %}
+    {% endfor %}
+{% endblock %}

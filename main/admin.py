@@ -17,7 +17,12 @@ class GameRequestAdmin(admin.ModelAdmin):
     list_filter = ('game', 'extUser')
 
 
+class RulesAdmin(admin.ModelAdmin):
+    list_display = ('ruleTitle', 'position')
+
+
 admin.site.register(models.ExtendedUser)
 admin.site.register(models.Post, PostAdmin)
 admin.site.register(models.Game, GameAdmin)
 admin.site.register(models.GameRequest, GameRequestAdmin)
+admin.site.register(models.Rules, RulesAdmin)

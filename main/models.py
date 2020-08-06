@@ -55,3 +55,16 @@ class GameRequest(models.Model):
     class Meta:
         verbose_name = 'запрос на игру'
         verbose_name_plural = 'запросы на игру'
+
+
+class Rules(models.Model):
+    ruleTitle = models.CharField(max_length=128, verbose_name='Название пункта правил')
+    ruleText = models.TextField(verbose_name='Правила')
+    position = models.PositiveSmallIntegerField(unique=True, verbose_name='Номер по порядку')
+
+    def __str__(self):
+        return '{}'.format(self.ruleTitle, self.position)
+
+    class Meta:
+        verbose_name = 'правило'
+        verbose_name_plural = 'правила'
