@@ -6,10 +6,14 @@
     {% load static %}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{% static "css/materialize.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/customization.css" %}">
 </head>
 <body>
 {% include "inc/navbar.html" %}
-{% block content %} {% endblock %}
+<main class="container">
+    {% block content %} {% endblock %}
+</main>
+{% include "inc/footer.html" %}
 <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
 </body>
 </html>
