@@ -20,8 +20,9 @@ class ExtendedUser(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=128, verbose_name='Заголовок')
-    # img = models.ImageField() //TODO: Pillow required
     postText = models.TextField(verbose_name='Текст')
+    img = models.ImageField(upload_to='posts/', null=True, verbose_name='Изображение', blank=True)
+    youtubeVideo = models.URLField(verbose_name='Видео на youtube (ссылка)', null=True, blank=True)
     date = models.DateField(auto_now_add=True, verbose_name='Дата публикации')
 
     def __str__(self):
