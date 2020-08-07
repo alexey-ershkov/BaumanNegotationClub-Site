@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block titile %}
+    Новости
+{% endblock %}
+{% block content %}
+    <div class="row">
+        {% for post in posts %}
+            {% include "inc/postCard.html" %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -21,5 +21,6 @@ from main.models import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='main')
+    path('', views.index, name='main'),
+    path('news/', views.news, name='news'),
 ]

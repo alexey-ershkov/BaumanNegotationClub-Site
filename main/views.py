@@ -7,4 +7,9 @@ from main.models import *
 
 def index(request):
     posts = Post.objects.all()
-    return render(request, 'index.html', {'posts': posts})
+    return render(request, 'index.html')
+
+
+def news(request):
+    posts = Post.objects.all()
+    return render(request, 'news.html', {'posts': posts})
