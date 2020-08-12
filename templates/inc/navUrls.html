@@ -1,4 +1,8 @@
-<li><a href="/news">Новости</a></li>
+{% if active == 'news' %}
+    <li class="active" ><a href="/news">Новости</a></li>
+{% else %}
+    <li><a href="/news">Новости</a></li>
+{% endif %}
 <li><a href="/play">Игры</a></li>
 <li><a href="/rules">Правила</a></li>
 <li><a href="/rules">О клубе</a></li>

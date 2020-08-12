@@ -1,12 +1,18 @@
 <div class="col s12 m6">
-    <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
+    <div class="card">
+        {% if post.img %}
+            <div class="card-image">
+                <img src="{{ post.img.url }}">
+            </div>
+        {% endif %}
+        <div class="card-content">
             <span class="card-title">{{ post.title }}</span>
-            <p>{{ post.postText }}.</p>
         </div>
+
         <div class="card-action">
-            <a href="#">Читать</a>
+            <a href="/news/{{ post.id }}">Читать</a>
             <span>{{ post.date }}</span>
         </div>
     </div>
 </div>
+
