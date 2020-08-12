@@ -17,3 +17,11 @@ def news(request):
 def single_post(request, post_id):
     post = Post.objects.get(pk=post_id)
     return render(request, 'singlePost.html', {'active': 'news', 'post': post})
+
+
+def login(request):
+    return render(request, 'login.html')
+
+
+def register(request):
+    return render(request, 'register.html')
