@@ -9,7 +9,8 @@ import re
 
 class ExtendedUser(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='users/', null=True, verbose_name='Аватар пользователя', blank=True)
+    avatar = models.ImageField(upload_to='users/', null=True, verbose_name='Аватар пользователя',
+                               default='img/default-avatar.png')
     socialLink = models.URLField(max_length=256)
 
     def __str__(self):

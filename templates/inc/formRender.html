@@ -1,0 +1,14 @@
+{% for fieldInfo in formInfo %}
+    <div class="row">
+        <div class="input-field">
+            <input id={{ fieldInfo.input }} name={{ fieldInfo.input }} type={{ fieldInfo.type }}
+                    {% if fieldInfo.value %} value={{ fieldInfo.value }} {% endif %}
+                    {% if fieldInfo.error %} class="invalid"  {% endif %}
+                    {% if not fieldInfo.required %} required {% endif %}>
+            <label for={{ fieldInfo.input }}>{{ fieldInfo.label }}</label>
+            {% if fieldInfo.error %}
+                <span class="helper-text" data-error="{{ fieldInfo.error }}"></span>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

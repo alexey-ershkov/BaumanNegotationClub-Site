@@ -6,59 +6,23 @@
     <div class="row">
         <h1 class="col s12 center">Регистрация</h1>
     </div>
-    <div class="row">
-        <div class="col l6 push-l3 s10 push-s1">
-            <div class="row">
-                <div class="input-field">
-                    <input id="name" type="text" class="validate">
-                    <label for="name">Имя</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field">
-                    <input id="second_name" type="text" class="validate">
-                    <label for="second_name">Фамилия</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field">
-                    <input id="username" type="text" class="validate">
-                    <label for="username">Ник</label>
-                </div>
-            </div>
-             <div class="row">
-                <div class="input-field">
-                    <input id="email" type="email" class="validate">
-                    <label for="email">Email</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field">
-                    <input id="social" type="url" class="validate">
-                    <label for="social">Ссылка на социальную сеть для связи</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field">
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Пароль</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field">
-                    <input id="password-repeat" type="password" class="validate">
-                    <label for="password-repeat">Повторите пароль</label>
-                </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col l6 push-l3 s10 push-s1">
+                {% include 'inc/formRender.html' with formInfo=form_info %}
             </div>
         </div>
-    </div>
-    <div class="row">
-        <button class="col offset-s1 s10 l6 offset-l3  waves-effect waves-light btn-large center">Вход</button>
-    </div>
+        <div class="row">
+            <button type="submit" class="col offset-s1 s10 l6 offset-l3  waves-effect waves-light btn-large center">
+                Зарегистрироваться
+            </button>
+        </div>
+    </form>
     <div class="row">
         <div class="col center s12">
                     <span>
-                    Есть аккаунт? <a href="/register"> Войти </a>
+                    Есть аккаунт? <a href="/login"> Войти </a>
                 </span>
         </div>
     </div>
