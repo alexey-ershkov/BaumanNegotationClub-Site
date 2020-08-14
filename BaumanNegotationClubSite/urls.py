@@ -28,6 +28,7 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('register/', views.register, name='register'),
     path('profile/', views.settings, name='profile'),
+    path('rules/', views.rules, name='rules'),
 ]
 
 if settings.DEBUG:

@@ -189,3 +189,11 @@ def settings(request):
         },
     ]
     return render(request, 'profile.html', {'author': author, 'form_info': form_info})
+
+
+def rules(request):
+    author = ''
+    if request.user.is_authenticated:
+        author = ExtendedUser.objects.get(user=request.user)
+    rules = Rules.objects.order_by('position')
+    return render(request, 'rules.html', {'author': author, 'rules': rules})
