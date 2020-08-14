@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block titile %}
+    Профиль пользователя
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s12 center-align">
+            <h1>Профиль пользователя </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <div class="center center-align">
+                <img src="{{ author.avatar.url }}" alt="" class="circle round-avatar" width="200" height="200">
+                <h3> {{ author.user.first_name }} {{ author.user.last_name }} </h3>
+                <h3><span class="teal-text">Ник:</span> {{ author.user.username }}</h3>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col l6 push-l3 s10 push-s1">
+                            {% include 'inc/formRender.html' with formInfo=form_info %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit"
+                                class="col offset-s1 s10 l6 offset-l3  waves-effect waves-light btn-large center">
+                            Сохранить
+                        </button>
+                    </div>
+                </form>
+                {% if changes_saved %}
+                    <span>
+                        Изменения сохранены
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

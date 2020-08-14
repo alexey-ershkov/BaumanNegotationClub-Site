@@ -1,10 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 from main.models import *
 
 
 # Create your views here.
+
+def save_uploaded_file(f, path):
+    with open(path, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
 
 def index(request):
     author = ''
@@ -33,7 +41,7 @@ def login(request):
     form_info = [
         {
             'input': 'login',
-            'label': 'Логин',
+            'label': 'Ник',
             'type': 'text',
             'required': True,
         },
@@ -125,6 +133,8 @@ def register(request):
             form_info[2]['error'] = 'Такой пользователь уже существует'
         elif password != password_repeat:
             form_info[6]['error'] = 'Пароли не совпадают'
+        elif len(password) < 8:
+            form_info[5]['error'] = 'Пароль слишком короткий'
         else:
             user = User.objects.create_user(username=username, email=email, first_name=first_name, last_name=last_name,
                                             password=password)
@@ -135,3 +145,47 @@ def register(request):
             return redirect('/')
 
     return render(request, 'register.html', {'form_info': form_info})
+
+
+def settings(request):
+    author = ''
+    if request.user.is_authenticated:
+        author = ExtendedUser.objects.get(user=request.user)
+    if request.POST:
+        email = request.POST.get('email')
+        social_link = request.POST.get('social')
+        if email != request.user.email:
+            request.user.email = email
+            request.user.save()
+        if author.socialLink != social_link:
+            author.socialLink = social_link
+            author.save()
+        if request.FILES.get('avatar'):
+            file = request.FILES['avatar']
+            fs = FileSystemStorage()
+            path = 'users/' + file.name
+            fs.save(path, file)
+            author.avatar = path
+            author.save()
+        return redirect('/profile')
+
+    form_info = [
+        {
+            'input': 'email',
+            'label': 'Email',
+            'type': 'email',
+            'value': author.user.email,
+        },
+        {
+            'input': 'social',
+            'label': 'Ссылка на социальную сеть для связи',
+            'type': 'url',
+            'value': author.socialLink,
+        },
+        {
+            'input': 'avatar',
+            'label': 'Изменить аватар',
+            'type': 'file',
+        },
+    ]
+    return render(request, 'profile.html', {'author': author, 'form_info': form_info})

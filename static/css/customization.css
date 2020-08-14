@@ -19,6 +19,10 @@ main {
     margin-left: 10%;
 }
 
+.round-avatar{
+    object-fit: cover;
+}
+
 @media screen and (max-width:1000px) {
     .youtubeVideo {
         height: 40vw;

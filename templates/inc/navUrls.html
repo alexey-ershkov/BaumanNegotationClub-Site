@@ -8,9 +8,9 @@
 <li><a href="/rules">О клубе</a></li>
 {% if author.user.is_authenticated %}
     <li>
-        <a href="/settings" class=" waves-effect waves-light btn-large">
+        <a href="/profile" class=" waves-effect waves-light btn-large">
             <div class="valign-wrapper">
-                <img src="{{ author.avatar.url }}" alt="" class="circle responsive-img " width="40">
+                <img src="{{ author.avatar.url }}" alt="" class="circle round-avatar " width="40" height="40">
                 <span style="margin-left: 10px;"> {{ author.user.first_name }} {{ author.user.last_name }} </span>
             </div>
         </a>
