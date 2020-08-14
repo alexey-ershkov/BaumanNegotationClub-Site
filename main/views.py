@@ -1,18 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
 from main.models import *
 
 
 # Create your views here.
-
-def save_uploaded_file(f, path):
-    with open(path, 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
-
 
 def index(request):
     author = ''
@@ -38,6 +31,8 @@ def single_post(request, post_id):
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('/')
     form_info = [
         {
             'input': 'login',
@@ -67,6 +62,8 @@ def login(request):
 
 
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('/')
     form_info = [
         {
             'input': 'first_name',
@@ -204,3 +201,8 @@ def about(request):
     if request.user.is_authenticated:
         author = ExtendedUser.objects.get(user=request.user)
     return render(request, 'about.html', {'active': 'about', 'author': author})
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
