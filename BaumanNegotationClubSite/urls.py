@@ -29,6 +29,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('profile/', views.settings, name='profile'),
     path('rules/', views.rules, name='rules'),
+    path('about/', views.about, name='about'),
 ]
 
 if settings.DEBUG:

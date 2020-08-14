@@ -1,11 +1,7 @@
-{% if active == 'news' %}
-    <li class="active"><a href="/news">Новости</a></li>
-{% else %}
-    <li><a href="/news">Новости</a></li>
-{% endif %}
-<li><a href="/play">Игры</a></li>
-<li><a href="/rules">Правила</a></li>
-<li><a href="/rules">О клубе</a></li>
+<li {% if active == 'news' %} class="active" {% endif %}><a href="/news">Новости</a></li>
+<li {% if active == 'games' %} class="active" {% endif %}><a href="/play">Игры</a></li>
+<li {% if active == 'rules' %} class="active" {% endif %}><a href="/rules">Правила</a></li>
+<li {% if active == 'about' %} class="active" {% endif %}><a href="/about">О клубе</a></li>
 {% if author.user.is_authenticated %}
     <li>
         <a href="/profile" class=" waves-effect waves-light btn-large">

@@ -196,4 +196,11 @@ def rules(request):
     if request.user.is_authenticated:
         author = ExtendedUser.objects.get(user=request.user)
     rules = Rules.objects.order_by('position')
-    return render(request, 'rules.html', {'author': author, 'rules': rules})
+    return render(request, 'rules.html', {'active': 'rules', 'author': author, 'rules': rules})
+
+
+def about(request):
+    author = ''
+    if request.user.is_authenticated:
+        author = ExtendedUser.objects.get(user=request.user)
+    return render(request, 'about.html', {'active': 'about', 'author': author})
