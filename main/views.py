@@ -7,7 +7,10 @@ from main.models import *
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    author = ''
+    if request.user.is_authenticated:
+        author = ExtendedUser.objects.get(user=request.user)
+    return render(request, 'index.html', {'author': author})
 
 
 def news(request):

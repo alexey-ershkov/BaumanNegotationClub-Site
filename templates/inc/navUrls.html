@@ -1,9 +1,20 @@
 {% if active == 'news' %}
-    <li class="active" ><a href="/news">Новости</a></li>
+    <li class="active"><a href="/news">Новости</a></li>
 {% else %}
     <li><a href="/news">Новости</a></li>
 {% endif %}
 <li><a href="/play">Игры</a></li>
 <li><a href="/rules">Правила</a></li>
 <li><a href="/rules">О клубе</a></li>
-<li><a href="/login" class="waves-effect waves-light btn">Вход в аккаунт</a></li>
+{% if author.user.is_authenticated %}
+    <li>
+        <a href="/settings" class=" waves-effect waves-light btn-large">
+            <div class="valign-wrapper">
+                <img src="{{ author.avatar.url }}" alt="" class="circle responsive-img " width="40">
+                <span style="margin-left: 10px;"> {{ author.user.first_name }} {{ author.user.last_name }} </span>
+            </div>
+        </a>
+    </li>
+{% else %}
+    <li><a href="/login" class="waves-effect waves-light btn">Вход в аккаунт</a></li>
+{% endif %}
