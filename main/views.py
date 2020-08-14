@@ -14,13 +14,19 @@ def index(request):
 
 
 def news(request):
+    author = ''
+    if request.user.is_authenticated:
+        author = ExtendedUser.objects.get(user=request.user)
     posts = Post.objects.all()
-    return render(request, 'news.html', {'active': 'news', 'posts': posts})
+    return render(request, 'news.html', {'active': 'news', 'posts': posts, 'author': author})
 
 
 def single_post(request, post_id):
+    author = ''
+    if request.user.is_authenticated:
+        author = ExtendedUser.objects.get(user=request.user)
     post = Post.objects.get(pk=post_id)
-    return render(request, 'singlePost.html', {'active': 'news', 'post': post})
+    return render(request, 'singlePost.html', {'active': 'news', 'post': post, 'author': author})
 
 
 def login(request):
