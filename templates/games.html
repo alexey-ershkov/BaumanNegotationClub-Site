@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+    Игры
+{% endblock %}
+{% block content %}
+    <div class="row">
+        {% for game in games %}
+            {% include 'inc/gameCard.html' with game=game %}
+        {% endfor %}
+    </div>
+    {% load static %}
+    <script type="text/javascript" src="{% static 'js/gameTimeChooser.js' %}"></script>
+{% endblock %}

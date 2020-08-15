@@ -1,0 +1,34 @@
+<div class="col s12 l10 push-l1">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ game.title }}</span>
+            <p> {% if game.gameType == 'K' %} Классическая  {% else %} Ситуационная  {% endif %}<br> {{ game.date }}</p>
+        </div>
+        {% if not game.have_my_request %}
+            <div class="card-action">
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="game-id" value="{{ game.id }}">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="time" name="time" type="time" class="timepicker" autocomplete="off"
+                               placeholder="Предпочиатемое время">
+                    </div>
+                </div>
+                {% if not game.have_request %}
+                    <div class="row">
+                        <button class="col  s12 m8 push-m2  waves-effect waves-light btn-large"
+                                type="submit">
+                            Записаться на игру
+                        </button>
+                    </div>
+                {% endif %}
+            </form>
+        {% else %}
+            <div class="card-action teal center">
+            <span class="flow-text white-text">Вы зарегистрированы на игру. С вами свяжутся для уточнения деталей
+                </span>
+        {% endif %}
+        </div>
+        </div>
+    </div>

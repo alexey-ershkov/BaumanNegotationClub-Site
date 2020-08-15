@@ -44,6 +44,7 @@ class Game(models.Model):
     title = models.CharField(max_length=128, verbose_name='Название игры')
     gameType = models.CharField(choices=types, verbose_name='Тип игры', max_length=1, default='K')
     date = models.DateTimeField(verbose_name='Дата и время игры', null=True)
+    have_my_request = models.BooleanField(verbose_name='Доп поле для отрисовки данных на странице игр', default=False)
 
     def __str__(self):
         return '{}'.format(self.title, self.date)
@@ -54,8 +55,11 @@ class Game(models.Model):
 
 
 class GameRequest(models.Model):
+    status = (('N', 'Новая заявка'), ('W', 'Ожидает подверждения'), ('С', 'Заявка подтверждена'))
+    requestStatus = models.CharField(choices=status, verbose_name='Статус заявки', max_length=1, default='N')
     game = models.ForeignKey('Game', on_delete=models.DO_NOTHING, verbose_name='Игра', null=True)
-    extUser = models.OneToOneField('ExtendedUser', on_delete=models.CASCADE, verbose_name='Участник')
+    extUser = models.ForeignKey('ExtendedUser', on_delete=models.CASCADE, verbose_name='Участник', null=True)
+    social = models.CharField(verbose_name='ссылка на профиль в соц сети', max_length=256)
     gameTimeWanted = models.TimeField(verbose_name='Предпочитаемое время', null=True)
 
     def __str__(self):

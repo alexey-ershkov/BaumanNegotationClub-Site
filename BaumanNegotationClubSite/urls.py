@@ -30,7 +30,8 @@ urlpatterns = [
     path('profile/', views.settings, name='profile'),
     path('rules/', views.rules, name='rules'),
     path('about/', views.about, name='about'),
-    path('logout/', views.logout, name='logout')
+    path('logout/', views.logout, name='logout'),
+    path('games/', views.games, name='games'),
 ]
 
 if settings.DEBUG:

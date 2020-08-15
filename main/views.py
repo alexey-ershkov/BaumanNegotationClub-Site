@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.core.files.storage import FileSystemStorage
@@ -206,3 +207,24 @@ def about(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+
+@login_required
+def games(request):
+    author = ''
+    if request.user.is_authenticated:
+        author = ExtendedUser.objects.get(user=request.user)
+    if request.POST:
+        game_id = request.POST.get('game-id')
+        time = request.POST.get('time')
+        game = Game.objects.get(id=game_id)
+        game.save()
+        game_request = GameRequest.objects.create(game=game, extUser=author, gameTimeWanted=time,
+                                                  social=author.socialLink)
+        game_request.save()
+    games_data = Game.objects.order_by('-date')
+    for game_info in games_data:
+        if GameRequest.objects.filter(game=game_info, extUser=author).count() != 0:
+            game_info.have_my_request = True
+    #     TODO переименовать автора на игрока
+    return render(request, 'games.html', {'active': 'games', 'author': author, 'games': games_data})

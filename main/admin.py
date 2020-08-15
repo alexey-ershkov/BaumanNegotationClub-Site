@@ -9,12 +9,13 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class GameAdmin(admin.ModelAdmin):
+    fields = ('title', 'gameType', 'date', 'players')
     list_display = ('title', 'date')
 
 
 class GameRequestAdmin(admin.ModelAdmin):
     list_display = ('extUser', 'gameTimeWanted', 'game')
-    list_filter = ('game', 'extUser')
+    list_filter = ('game', 'requestStatus')
 
 
 class RulesAdmin(admin.ModelAdmin):
