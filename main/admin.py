@@ -9,7 +9,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class GameAdmin(admin.ModelAdmin):
-    fields = ('title', 'gameType', 'date', 'players')
+    fields = ('title', 'gameType', 'date', 'comments')
     list_display = ('title', 'date')
 
 

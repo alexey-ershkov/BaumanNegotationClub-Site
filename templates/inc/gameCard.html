@@ -11,8 +11,8 @@
                 <input type="hidden" name="game-id" value="{{ game.id }}">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="time" name="time" type="time" class="timepicker" autocomplete="off"
-                               placeholder="Предпочиатемое время">
+                        <input id="time" name="time" type="time" class="timepicker" autocomplete="off" required>
+                         <label for="time">Предпочиатемое время игры</label>
                     </div>
                 </div>
                 {% if not game.have_request %}

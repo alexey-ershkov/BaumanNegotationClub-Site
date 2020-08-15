@@ -2,11 +2,24 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.core.files.storage import FileSystemStorage
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils.datetime_safe import datetime
 
 from main.models import *
 
 
 # Create your views here.
+
+def pagination(object_list, page_n):
+    paginator = Paginator(object_list, 4)
+    try:
+        page = paginator.page(page_n)
+    except PageNotAnInteger:
+        page = paginator.page(1)
+    except EmptyPage:
+        page = paginator.page(paginator.num_pages)
+    return page, paginator
+
 
 def index(request):
     author = ''
@@ -19,8 +32,10 @@ def news(request):
     author = ''
     if request.user.is_authenticated:
         author = ExtendedUser.objects.get(user=request.user)
+    page_n = request.GET.get('page', 1)
     posts = Post.objects.all()
-    return render(request, 'news.html', {'active': 'news', 'posts': posts, 'author': author})
+    posts, pag = pagination(posts, page_n)
+    return render(request, 'news.html', {'active': 'news', 'posts': posts, 'author': author, 'pag': pag})
 
 
 def single_post(request, post_id):
@@ -222,7 +237,7 @@ def games(request):
         game_request = GameRequest.objects.create(game=game, extUser=author, gameTimeWanted=time,
                                                   social=author.socialLink)
         game_request.save()
-    games_data = Game.objects.order_by('-date')
+    games_data = Game.objects.filter(date__gt=datetime.now()).order_by('date')
     for game_info in games_data:
         if GameRequest.objects.filter(game=game_info, extUser=author).count() != 0:
             game_info.have_my_request = True

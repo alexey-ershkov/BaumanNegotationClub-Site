@@ -1,0 +1,26 @@
+<div class="row center">
+    <div class="col s12">
+        <ul class="pagination">
+            {% if objects.number == 1 %}
+                <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
+            {% else %}
+                <li class="waves-effect"><a href="?page=1"><i class="material-icons">chevron_left</i></a></li>
+            {% endif %}
+
+            {% for page in pag.page_range %}
+                {% if page == objects.number %}
+                    <li class="active deep-orange lighten-3"><a>{{ page }}</a></li>
+                {% elif page > objects.number|add:-3 and page < objects.number|add:3 %}
+                    <li class="waves-effect"><a href="?page={{ page }}"> {{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+
+            {% if objects.number == pag.num_pages %}
+                <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+            {% else %}
+                <li class="waves-effect"><a href="?page={{ pag.num_pages }}"><i class="material-icons">chevron_right</i></a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
