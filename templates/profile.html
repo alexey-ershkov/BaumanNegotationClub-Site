@@ -14,7 +14,7 @@
             <div class="center center-align">
                 <img src="{{ author.avatar.url }}" alt="" class="circle round-avatar" width="200" height="200">
                 <h3> {{ author.user.first_name }} {{ author.user.last_name }} </h3>
-                <h3><span class="teal-text">Ник:</span> {{ author.user.username }}</h3>
+                <h3><span class="deep-orange-text text-lighten-3">Ник:</span> {{ author.user.username }}</h3>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
@@ -24,14 +24,14 @@
                     </div>
                     <div class="row">
                         <button type="submit"
-                                class="col offset-s1 s10 l6 offset-l3  waves-effect waves-light btn-large center">
+                                class="col offset-s1 s10 l6 offset-l3  waves-effect waves-light btn-large deep-orange lighten-3 center">
                             Сохранить
                         </button>
                     </div>
                 </form>
                 <div class="row">
                     <a href="/logout"
-                            class="col offset-s1 s10 l6 offset-l3 red btn-large center">
+                            class="col offset-s1 s10 l6 offset-l3 red darken-3 btn-large center">
                         Выйти из аккаунта
                     </a>
                 </div>

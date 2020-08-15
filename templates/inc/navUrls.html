@@ -4,7 +4,7 @@
 <li {% if active == 'about' %} class="active" {% endif %}><a href="/about">О клубе</a></li>
 {% if author.user.is_authenticated %}
     <li>
-        <a href="/profile" class=" waves-effect waves-light btn-large">
+        <a href="/profile" class="waves-effect waves-light btn-large deep-orange lighten-3">
             <div class="valign-wrapper">
                 <img src="{{ author.avatar.url }}" alt="" class="circle round-avatar " width="40" height="40">
                 <span style="margin-left: 10px;"> {{ author.user.first_name }} {{ author.user.last_name }} </span>
@@ -12,5 +12,5 @@
         </a>
     </li>
 {% else %}
-    <li><a href="/login" class="waves-effect waves-light btn">Вход в аккаунт</a></li>
+    <li><a href="/login" class="waves-effect waves-light btn deep-orange lighten-3">Вход в аккаунт</a></li>
 {% endif %}
