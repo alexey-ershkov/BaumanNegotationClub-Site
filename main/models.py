@@ -14,7 +14,7 @@ class ExtendedUser(models.Model):
     socialLink = models.URLField(max_length=256)
 
     def __str__(self):
-        return '{}'.format(self.user)
+        return '{}'.format(self.user.first_name + ' ' + self.user.last_name)
 
     class Meta:
         verbose_name = 'участника клуба'

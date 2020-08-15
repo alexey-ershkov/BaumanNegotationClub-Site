@@ -6,16 +6,20 @@ from main import models
 # Register your models here.
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'date')
+    search_fields = ('title', 'date')
 
 
 class GameAdmin(admin.ModelAdmin):
     fields = ('title', 'gameType', 'date', 'comments')
     list_display = ('title', 'date')
+    list_filter = ('date', 'gameType')
+    search_fields = ('date', 'title')
 
 
 class GameRequestAdmin(admin.ModelAdmin):
-    list_display = ('extUser', 'gameTimeWanted', 'game')
+    list_display = ('extUser', 'gameTimeWanted', 'requestStatus')
     list_filter = ('game', 'requestStatus')
+    search_fields = ('extUser', 'gameTimeWanted')
 
 
 class RulesAdmin(admin.ModelAdmin):
