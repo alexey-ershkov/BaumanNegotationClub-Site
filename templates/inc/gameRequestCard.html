@@ -1,0 +1,42 @@
+<div class="col s12 l10 push-l1">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ req_obj.game.title }}</span>
+            <p> {% if req_obj.game.gameType == 'K' %} Классическая  {% else %} Ситуационная  {% endif %}
+                <br> {{ req_obj.game.date }}</p>
+            {% if req_obj.messageToUser %}
+                <p>
+                    <span class="deep-orange-text text-lighten-3 ">Информация от организаторов:</span> {{ req_obj.messageToUser }}
+                </p>
+            {% endif %}
+            {% if req_obj.requestStatus == 'С' %}
+                {% if req_obj.tableLink %}
+                    <a href="{{ req_obj.tableLink }}" target="_blank" class="main-color-text">Туринрная таблица</a> <br>
+                {% endif %}
+                {% if req_obj.gameLink %}
+                    <a href="{{ req_obj.gameLink }}" target="_blank" class="main-color-text">Ссылка на игру</a>
+                {% endif %}
+            {% endif %}
+        </div>
+        {% if req_obj.requestStatus == 'W' %}
+            <div class="card-action">
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="req-id" value="{{ req_obj.id }}">
+                <div class="row">
+                    <button class="col  s12 m8 push-m2  waves-effect waves-light btn-large deep-orange lighten-3"
+                            type="submit">
+                        Подтвердить участие в игре
+                    </button>
+                </div>
+            </form>
+        {% elif req_obj.requestStatus == 'N' %}
+            <div class="card-action deep-orange lighten-3 center">
+            <span class="flow-text white-text"> Ваша заявка обрабатывается</span>
+        {% else %}
+            <div class="card-action deep-orange lighten-3 center">
+            <span class="flow-text white-text"> Вы учавствуете в игре </span>
+        {% endif %}
+        </div>
+        </div>
+        </div>

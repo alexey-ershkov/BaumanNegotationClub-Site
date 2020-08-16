@@ -37,9 +37,12 @@ pre {
 }
 
 .main-color-text {
-    color: rgb(22, 61, 80);
+    color: rgb(22, 61, 80) !important;
 }
 
+nav ul li.active {
+    background-color: #ffab91 !important;
+}
 
 /* label color */
 .input-field label {

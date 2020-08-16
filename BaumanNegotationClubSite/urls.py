@@ -32,6 +32,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('logout/', views.logout, name='logout'),
     path('games/', views.games, name='games'),
+    path('requests/', views.requests, name='requests')
 ]
 
 if settings.DEBUG:

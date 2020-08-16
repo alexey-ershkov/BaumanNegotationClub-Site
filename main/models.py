@@ -61,7 +61,9 @@ class GameRequest(models.Model):
     game = models.ForeignKey('Game', on_delete=models.CASCADE, verbose_name='Игра', null=True)
     extUser = models.ForeignKey('ExtendedUser', on_delete=models.CASCADE, verbose_name='Участник', null=True)
     social = models.CharField(verbose_name='ссылка на профиль в соц сети', max_length=256)
-    gameTimeWanted = models.TimeField(verbose_name='Предпочитаемое время', null=True)
+    messageToUser = models.TextField(verbose_name='Сообщение для пользователя', blank=True, null=True)
+    tableLink = models.URLField(verbose_name='Ссылка на турнирную таблицу игры', blank=True, null=True)
+    gameLink = models.URLField(verbose_name='Ссылка на игру (например, если игра в Zoom)', blank=True, null=True)
 
     def __str__(self):
         return '{}'.format(self.extUser.user, self.game.title)

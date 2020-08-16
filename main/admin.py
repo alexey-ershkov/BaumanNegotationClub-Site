@@ -17,9 +17,8 @@ class GameAdmin(admin.ModelAdmin):
 
 
 class GameRequestAdmin(admin.ModelAdmin):
-    list_display = ('extUser', 'gameTimeWanted', 'requestStatus')
+    list_display = ('extUser', 'requestStatus')
     list_filter = ('game', 'requestStatus')
-    search_fields = ('extUser', 'gameTimeWanted')
 
 
 class RulesAdmin(admin.ModelAdmin):

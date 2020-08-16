@@ -8,6 +8,11 @@
             {% include 'inc/gameCard.html' with game=game %}
         {% endfor %}
     </div>
-    {% load static %}
-    <script type="text/javascript" src="{% static 'js/gameTimeChooser.js' %}"></script>
+    {% if games|length == 0 %}
+        <div class="row valign-wrapper center">
+            <div class="col s12">
+                <h1>Все игры прошли. Скоро будут еще</h1>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

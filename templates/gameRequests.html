@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+    Заявки на игру
+{% endblock %}
+{% block content %}
+    {% for req in requests %}
+        {% include 'inc/gameRequestCard.html' with req_obj=req %}
+    {% endfor %}
+    {% if requests|length == 0 %}
+        <div class="row valign-wrapper center">
+            <div class="col s12">
+                <h1>Вы не подали ни одной заявки на игру</h1>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -9,12 +9,6 @@
             <form method="post">
                 {% csrf_token %}
                 <input type="hidden" name="game-id" value="{{ game.id }}">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="time" name="time" type="time" class="timepicker" autocomplete="off" required>
-                         <label for="time">Предпочиатемое время игры</label>
-                    </div>
-                </div>
                 {% if not game.have_request %}
                     <div class="row">
                         <button class="col  s12 m8 push-m2  waves-effect waves-light btn-large deep-orange lighten-3"
@@ -26,9 +20,10 @@
             </form>
         {% else %}
             <div class="card-action deep-orange lighten-3 center">
-            <span class="flow-text white-text">Вы зарегистрированы на игру. С вами свяжутся для уточнения деталей
+            <span class="flow-text white-text">Вы подали заявку на игру. Детали появятся в
+                <a href="/requests" style="text-decoration: underline; text-transform: none;" class="white-text">заявках на игры</a>
                 </span>
         {% endif %}
         </div>
-        </div>
     </div>
+</div>
